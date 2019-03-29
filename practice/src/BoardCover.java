@@ -26,6 +26,7 @@ public class BoardCover {
 		}
 		for(int i=0; i<C; i++)
 			System.out.println(result[i]);
+		System.out.println();
 	}
 	
 	public static void init() {
@@ -67,7 +68,7 @@ public class BoardCover {
 		for(int type=0; type<4; type++) {
 			if(set(x,y,type,1)) //¸¸¾à board¸¦ typeÀÇ ÇüÅÂ·Î µ¤À» ¼ö ÀÖÀ¸¸é Àç±ÍÈ£ÃâÇÔ 
 				ret += cover();
-			set(x,y,type,-1); //µ¤¾ú´ø typeÀ» ¾ø¾Ú..
+			set(x,y,type,-1); //µ¤¾ú´ø typeÀ» ¾ø¾Ú...
 		}
 		return ret;
 	}
