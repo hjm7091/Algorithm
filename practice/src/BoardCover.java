@@ -26,6 +26,7 @@ public class BoardCover {
 		}
 		for(int i=0; i<C; i++)
 			System.out.println(result[i]);
+		System.out.println();
 	}
 	
 	public static void init() {
