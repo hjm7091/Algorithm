@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import java.util.Scanner;
 
 public class BoardCover {
@@ -72,13 +71,5 @@ public class BoardCover {
 			set(x,y,type,-1); //µ¤¾ú´ø typeÀ» ¾ø¾Ú
 		}
 		return ret;
-=======
-
-public class BoardCover {
-
-	public static void main(String[] args) {
-		System.out.println("Hello World!!");
->>>>>>> refs/remotes/origin/master
 	}
-
 }
