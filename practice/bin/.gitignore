@@ -6,3 +6,6 @@
 /fastSum.class
 /normalMultiply.class
 /reverseQuadtree.class
+/bruteForce.class
+/LadderCutting_bruteForce.class
+/LadderCutting_DivideAndConquer.class
