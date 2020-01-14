@@ -1,7 +1,8 @@
+package q14225;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Q14225 {
+public class Main {
 
 	static int N;
 	static int[] S;

@@ -1,3 +1,4 @@
+package q16197;
 import java.util.Scanner;
 
 class Coin {
@@ -8,7 +9,7 @@ class Coin {
 	}
 }
 
-public class Q16197 {
+public class Main {
 
 	static int N, M;
 	static char[][] board;

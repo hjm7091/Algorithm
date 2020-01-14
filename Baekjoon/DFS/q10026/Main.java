@@ -1,7 +1,8 @@
+package q10026;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Q10026 {
+public class Main {
 
 	static int N;
 	static char[][] map;

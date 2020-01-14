@@ -1,6 +1,7 @@
+package q12869;
 import java.util.Scanner;
 
-public class Q12869 {
+public class Main {
 
 	static int N;
 	static int[] scv = new int[3];

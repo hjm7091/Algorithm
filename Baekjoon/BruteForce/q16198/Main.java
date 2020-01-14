@@ -1,7 +1,8 @@
+package q16198;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Q16198 {
+public class Main {
 
 	static int N;
 	static ArrayList<Integer> energy = new ArrayList<>();
