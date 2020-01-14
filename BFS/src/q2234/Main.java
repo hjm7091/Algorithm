@@ -1,9 +1,11 @@
+package q2234;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class Q2234 {
+public class Main {
 
 	static int n, m;
 	static int[][] map;
