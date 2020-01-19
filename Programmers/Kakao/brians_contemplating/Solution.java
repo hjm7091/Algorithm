@@ -1,111 +1,177 @@
 package brians_contemplating;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Solution {
 	
-	Map<Character, Integer> alpha = new HashMap<Character, Integer>();
+	int[] alpha = new int[26];
+	boolean[] visit = new boolean[26];
+	boolean exit = false;
+	String input = "";
+	StringBuilder answer = new StringBuilder();
 	
 	public String solution(String sentence) {
-		countLowAlpha(sentence);
-		System.out.println(alpha);
-		System.out.println(sentence);
-		lookMap(sentence);
-		String answer = "";
-		return answer;
-		
+		input = sentence;
+//		System.out.println(input);
+		countLowerAlpha();
+//		System.out.println(Arrays.toString(alpha));
+		findOriginalSentence();
+		return answer.toString().trim();
 	}
 	
-	private void countLowAlpha(String sentence) {
-		for(int idx=0; idx<sentence.length(); idx++) {
-			char nowChar = sentence.charAt(idx);
-			if(Character.isLowerCase(nowChar)) {
-				if(alpha.containsKey(nowChar)) 
-					alpha.put(nowChar, alpha.get(nowChar) + 1);
-				else 
-					alpha.put(nowChar, 1);
+	private void countLowerAlpha() {
+		for(int idx=0; idx<input.length(); idx++) {
+			if(Character.isLowerCase(input.charAt(idx))) {
+				alpha[input.charAt(idx) - 'a']++;
 			}
 		}
 	}
 	
-	private void lookMap(String sentence) {
-		for(Map.Entry<Character, Integer> entry : alpha.entrySet()) {
-			char alpha = entry.getKey();
-			int count = entry.getValue();
-			int startIdx = sentence.indexOf(alpha) - 1;
-			int endIdx = sentence.lastIndexOf(alpha) + 1;
-			String word1 = "", word2 = "";
-			if(count==2) {
-				if(isPossibleUndoRule1(sentence, alpha, startIdx, endIdx))
-					word1 = undoRule1(sentence, alpha, startIdx, endIdx);
-				word2 = undoRule2(sentence, alpha, startIdx, endIdx);
+	private void findOriginalSentence() {
+		for(int idx=0; idx<input.length(); idx++) {
+			if(exit)
+				break;
+//			System.out.println(idx);
+//			System.out.println(answer.toString());
+			char now = input.charAt(idx);
+			if(Character.isUpperCase(now)) { //대문자로 시작하는 경우
+				if(!checkRangeOver(idx + 1))
+					idx = checkNext_prevIsUpper(now, idx + 1);
+				else
+					answer.append(now);
 			}
-			else {
-				if(isPossibleUndoRule1(sentence, alpha, startIdx, endIdx))
-					word1 = undoRule1(sentence, alpha, startIdx, endIdx);
+			else if(Character.isLowerCase(now)) { //소문자로 시작하는 경우
+				idx = checkNext_prevIsLower(now, idx + 1);
 			}
-			System.out.println("word1:" + word1);
-			System.out.println("word2:" + word2);
-			System.out.println();
+			else { //대문자나 소문자가 아닌 이외의 경우
+				answer = new StringBuilder().append("invalid");
+				exit = true;
+			}
 		}
 	}
 	
-	private boolean isPossibleUndoRule1(String sentence, char alpha, int start, int end) {
-		if(sentence.length()<=2)
-			return false;
-		for(int idx=start; idx<=end; idx++) {
-			char nowChar = sentence.charAt(idx);
-			if(Character.isLowerCase(nowChar)) {
-				if(nowChar==alpha) {
-					int left = idx - 1;
-					int right = idx + 1;
-					if(checkRangeOver(sentence, left, right))
-						return false;
-					char leftChar = sentence.charAt(left);
-					char rightChar = sentence.charAt(right);
-					if(!Character.isUpperCase(leftChar) || !Character.isUpperCase(rightChar))
-						return false;
-				}
-			}
-		}
-		return true;
-	}
-	
-	private boolean checkRangeOver(String sentence, int left, int right) {
-		if(left<0 || right>=sentence.length())
+	private boolean checkRangeOver(int idx) {
+		if(idx >= input.length())
 			return true;
 		return false;
 	}
 	
-//	private boolean isPossibleUndoRule2(String sentence, char alpha) {
-//		int beginIdx = sentence.indexOf(alpha);
-//		int endIdx = sentence.lastIndexOf(alpha);
-//		String word = sentence.substring(beginIdx+1, endIdx);
-//		if(word.equals(""))
-//			return false;
-//		else
-//			return true;
-//	}
-	
-	private String undoRule1(String sentence, char alpha, int start, int end) {
-		String word = "";
-		for(int idx=start; idx<=end; idx++) {
-			char nowChar = sentence.charAt(idx);
-			if(Character.isUpperCase(nowChar)) 
-				word += nowChar;
-			else {
-				if(nowChar==alpha)
-					continue;
-				else
-					break;
+	private int checkNext_prevIsUpper(char prev, int idx) {
+		char next = input.charAt(idx);
+		if(Character.isUpperCase(next)) { //다음 문자가 대문자인 경우
+			answer.append(prev); //이전 문자를 붙인다.
+		}
+		else if(Character.isLowerCase(next)) { //다음 문자가 소문자인 경우
+			if(alpha[next - 'a'] == 2) { //소문자 개수가 2개인 경우
+				answer.append(prev).append(" "); //이전 문자를 넣어주고 분리한다.
+			}
+			else { //소문자 개수가 2개가 아닌 경우
+				if(answer.length() > 0 && answer.charAt(answer.length() - 1) != ' ') {
+                    answer.append(" ");
+                }
+				int num = alpha[next - 'a'];
+				int start = idx - 1;
+				int end = start + num * 2;
+				if(visit[next - 'a'] || checkRangeOver(end)) {
+					answer = new StringBuilder().append("invalid");
+					exit = true;
+				}
+				
+				boolean isWord = true;
+				for(int j=start; j<end; j+=2) {
+					char now = input.charAt(j);
+					if(Character.isUpperCase(now) && input.charAt(j+1)==next) {
+						answer.append(now);
+					}
+					else {
+						isWord = false;
+						break;
+					}
+				}
+				
+				if(isWord && Character.isUpperCase(input.charAt(end))) {
+					answer.append(input.charAt(end)).append(" ");
+					visit[next - 'a'] = true;
+					return end;
+				}
+				else {
+					answer = new StringBuilder().append("invalid");
+					exit = true;
+				}
 			}
 		}
-		return word;
+		return idx;
 	}
 	
-	private String undoRule2(String sentence, char alpha, int start, int end) {
-		return sentence.substring(start + 2, end - 1);
+	private int checkNext_prevIsLower(char prev, int idx) {
+		char next = input.charAt(idx);
+		if(!visit[prev - 'a'] && alpha[prev - 'a']==2) {
+			if(Character.isLowerCase(next)) { //다음 문자도 소문자면 규칙에 어긋남
+				answer = new StringBuilder().append("invalid");
+				exit = true;
+			}
+			else {
+				int index = idx;
+				int lowerCnt = 0, upperCnt = 0;
+				char lower = ' ';
+				boolean isWord = true;
+				while(index < input.length() && input.charAt(index) != prev) {
+					if(Character.isUpperCase(input.charAt(index))) {
+						upperCnt++;
+					}
+					else {
+						if(lower==' ') {
+							lower = input.charAt(index);
+						}
+						else if(lower != input.charAt(index)) {
+							isWord = false;
+							break;
+						}
+						lowerCnt++;
+					}
+					index++;
+				}
+	
+				if(lowerCnt==0) {
+					for(int j=idx; j<index; j++) {
+						answer.append(input.charAt(j));
+					}
+					return index;
+				}
+				else {
+					if(isWord && lowerCnt + 1 == upperCnt) {
+						if(!visit[lower - 'a']) {
+							for(int j=idx; j<index-1; j+=2) {
+								char now = input.charAt(j);
+								if(Character.isUpperCase(now) && input.charAt(j+1)==lower) {
+									answer.append(now);
+								}
+								else {
+									isWord = false;
+									break;
+								}
+							}
+						}
+					}
+					else {
+						isWord = false;
+					}
+					
+					if(isWord) {
+						answer.append(input.charAt(index-1)).append(" ");
+						visit[lower - 'a'] = true;
+						return index;
+					}
+					else {
+						answer = new StringBuilder().append("invalid");
+						exit = true;
+					}
+				}
+			}
+		}
+		else {
+			answer = new StringBuilder().append("invalid");
+			exit = true;
+		}
+		return idx;
 	}
 
 	public static void main(String[] args) {
@@ -113,7 +179,11 @@ public class Solution {
 		String sentence1 = "HaEaLaLaObWORLDb";
 		String sentence2 = "SpIpGpOpNpGJqOqA";
 		String sentence3 = "AxAxAxAoBoBoB";
-		System.out.println(s.solution(sentence3));
+		String sentence4 = "EoE";
+		String sentence5 = "xAaAbAaAx";
+		String sentence6 = "TxTxTxbAb";
+		String sentence7 = "bTxTxTaTxTbkABaCDk";
+		System.out.println(s.solution(sentence1));
 	}
 
 }
