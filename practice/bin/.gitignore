@@ -1,11 +1,12 @@
 /BoardCover.class
+/LadderCutting_DivideAndConquer.class
+/LadderCutting_bruteForce.class
 /Pick.class
 /Picnic.class
-/travelingSalesManProblem.class
-/setClock.class
 /fastSum.class
 /normalMultiply.class
 /reverseQuadtree.class
-/bruteForce.class
-/LadderCutting_bruteForce.class
-/LadderCutting_DivideAndConquer.class
+/setClock.class
+/travelingSalesManProblem.class
+/practice/
+/eratosthenes_sieve/
