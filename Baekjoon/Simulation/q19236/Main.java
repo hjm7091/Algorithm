@@ -12,7 +12,7 @@ class Info {
 	
 	@Override
 	public String toString() {
-		char[] arrow = { '¡è', '¢Ø', '¡ç', '¢×', '¡é', '¢Ù', '¡æ', '¢Ö' };
+		char[] arrow = { 'â†‘', 'â†–', 'â†', 'â†™', 'â†“', 'â†˜', 'â†’', 'â†—' };
 		return "(" + num + ", " + arrow[dir] + ")";
 	}
 
