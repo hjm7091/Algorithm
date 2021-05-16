@@ -6,9 +6,9 @@ public class Main {
 
 	static final int size = 9;
 	static int[][] board = new int[size][size];
-	static boolean[][] row = new boolean[size][10]; //row[r][num] : r��° �࿡ ���� num�� ������ true
-	static boolean[][] col = new boolean[size][10]; //col[c][num] : c��° ���� ���� num�� ������ true
-	static boolean[][] smallRect = new boolean[size][10]; //smallRect[i][num] : i��° ���� �ﰢ���� ���� num�� ������ true 
+	static boolean[][] row = new boolean[size][10]; //row[r][num] : r번째 행에 숫자 num이 있으면 true
+	static boolean[][] col = new boolean[size][10]; //col[c][num] : c번째 열에 숫자 num이 있으면 true
+	static boolean[][] smallRect = new boolean[size][10]; //smallRect[i][num] : i번째 작은 삼각형에 숫자 num이 있으면 true
 	
 	public static void main(String[] args) {
 		init();

@@ -25,18 +25,18 @@ public class reverseQuadtree {
 	}
 
 	public static String reverse() {
-		if(Quadtree.charAt(position)!='x') { //ù ���� x�� �ƴ� ���
+		if(Quadtree.charAt(position)!='x') {
 			position++;
 			return Quadtree.charAt(position-1)+"";	
 		}
-		else { //ù ���� x�� ���
+		else {
 			position++;
-			String[] tmp = new String[4]; //4������ ��� �׸�
+			String[] tmp = new String[4];
 			
-			tmp[0] = reverse(); //���� �� 
-			tmp[1] = reverse(); //������ ��
-			tmp[2] = reverse(); //���� �Ʒ�
-			tmp[3] = reverse(); //������ �Ʒ�
+			tmp[0] = reverse();
+			tmp[1] = reverse();
+			tmp[2] = reverse();
+			tmp[3] = reverse();
 			
 			return "x" + tmp[2] + tmp[3] + tmp[0] + tmp[1];
 		}

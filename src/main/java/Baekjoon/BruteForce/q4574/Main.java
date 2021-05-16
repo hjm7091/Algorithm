@@ -121,14 +121,14 @@ public class Main {
 						domino[i][j] = true;
 						for(int dir = 0; dir < 2; dir++) {
 							Point np = new Point(p.x + dx[dir], p.y + dy[dir]);
-							if(canPut(np.x, np.y)) { //��ġ �����ϰ� 
-								if(!breakRule(p, i) && !breakRule(np, j)) { //������ ���� ����� �ʴ´ٸ�
+							if(canPut(np.x, np.y)) { //배치 가능하고
+								if(!breakRule(p, i) && !breakRule(np, j)) { //스도쿠 룰을 어기지 않는다면
 									putDomino(p, np, i, j);
 									start(now + 1);
 									removeDomino(p, np, i, j);
 								}
 								
-								if(!breakRule(p, j) && !breakRule(np, i)) { //������ ���� ����� �ʴ´ٸ�
+								if(!breakRule(p, j) && !breakRule(np, i)) { //스도쿠 룰을 어기지 않는다면
 									putDomino(p, np, j, i);
 									start(now + 1);
 									removeDomino(p, np, j, i);

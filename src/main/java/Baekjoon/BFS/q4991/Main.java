@@ -55,10 +55,10 @@ public class Main {
 			}
 			
 			int size = robo_dirt.size();
-			robo_dirt_dist = new int[size][size]; //�������� ���������� �Ÿ��� ����
+			robo_dirt_dist = new int[size][size]; //한점에서 한점으로의 거리를 저장
 			for(int i=0; i<size; i++) {
 				pair src = robo_dirt.get(i);
-				int[][] dist = bfs(src); //�������� �ٸ� ����������� �Ÿ��� bfs�� ����
+				int[][] dist = bfs(src); //한점에서 다른 모든점까지의 거리를 bfs로 구함
 				for(int j=0; j<size; j++) {
 					pair dst = robo_dirt.get(j);
 					robo_dirt_dist[i][j] = dist[dst.x][dst.y];
@@ -72,11 +72,11 @@ public class Main {
 					break;
 			}
 			
-			if(flag) { //�����Ҽ� ���ٸ� -1���
+			if(flag) { //도달할수 없다면 -1출력
 				output.write("-1\n");
 				continue;
 			}
-			else { //�����Ҽ� ������ robo_dirt_dist�迭���� dfs�� �ִ� �Ÿ� ����
+			else { //도달할수 있으면 robo_dirt_dist배열에서 dfs로 최단 거리 구함
 				visited = new boolean[size];
 				result = Integer.MAX_VALUE;
 				dfs(0,0,0);

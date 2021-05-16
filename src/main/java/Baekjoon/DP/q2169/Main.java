@@ -6,9 +6,9 @@ public class Main {
 
 	static int N, M;
 	static int[][] map;
-	static int[][] dp; //(x, y)���� ���µ� Ž���� �������� ��ġ�� �ִ밪
-	static int[] left; //���ʰ� ���ʿ��� ���� ���� ��
-	static int[] right; //���ʰ� �����ʿ��� ���� ���� ��
+	static int[][] dp; //(x, y)까지 오는데 탐사한 지역들의 가치의 최대값
+	static int[] left; //위쪽과 왼쪽에서 오는 방향 비교
+	static int[] right; //위쪽과 오른쪽에서 오는 방향 비교
 	
 	public static void main(String[] args) {
 		init();
@@ -34,7 +34,7 @@ public class Main {
 	
 	private static void bottomUp() {
 		
-		//ù��° �� ó��
+		//첫번째 행 처리
 		dp[0][0] = map[0][0];
 		for(int x = 0, y = 1; y < M; y++) {
 			dp[x][y] = dp[x][y-1] + map[x][y];
@@ -42,17 +42,17 @@ public class Main {
 		
 		for(int x = 1; x < N; x++) {
 			
-			//���ʿ��� �������� ���� left, right�� ���� ����
+			//위쪽에서 내려왔을 때를 left, right에 각각 저장
 			for(int y = 0; y < M; y++) {
 				left[y] = right[y] = dp[x-1][y] + map[x][y];
 			}
 			
-			//���ʿ��� ���� ���� ��
+			//왼쪽에서 왔을 때와 비교
 			for(int y = 1; y < M; y++) {
 				left[y] = Integer.max(left[y], left[y-1] + map[x][y]);
 			}
 			
-			//�����ʿ��� ���� ���� ��
+			//오른쪽에서 왔을 때와 비교
 			for(int y = M - 2; y >= 0; y--) {
 				right[y] = Integer.max(right[y], right[y+1] + map[x][y]);
 			}

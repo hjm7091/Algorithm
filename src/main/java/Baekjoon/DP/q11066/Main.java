@@ -26,7 +26,7 @@ public class Main {
 			for(int i=1; i<=K; i++) 
 				size[i] = Integer.parseInt(st.nextToken());
 	
-//			bottom-up ���
+//			bottom-up 방식
 //			int range = 1;
 //			while(range<K) {
 //				for(int i=1; i<=K-range; i++) {
@@ -55,7 +55,7 @@ public class Main {
 //			}
 //			output.write(d[1][K]+"\n");
 			
-//			top-down ���
+//			top-down 방식
 			for(int i = 1; i <= K; i++)
 				Arrays.fill(d[i], -1);
 			output.write(go(1, K) + "\n");

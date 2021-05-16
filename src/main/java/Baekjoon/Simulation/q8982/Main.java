@@ -25,8 +25,8 @@ class Line {
 	
 	Point p1, p2;
 	int depth; 
-	int drained; //���� ���� ��
-	int idx; //���° �������� ����
+	int drained; //빠진 물의 양
+	int idx; //몇번째 라인인지 저장
 	
 	public Line(Point p1, Point p2, int depth, int drained, int idx) {
 		this.p1 = p1;
@@ -106,7 +106,7 @@ public class Main {
 			int drained = (hole.p2.x - hole.p1.x) * height;
 			hole.drained = drained;
 			
-			//����
+			//왼쪽
 			for(int i = hole.idx - 1; i >=0; i--) {
 				Line line = horizontal.get(i);
 				height = Integer.min(height, line.depth);
@@ -116,7 +116,7 @@ public class Main {
 			
 			height = hole.depth;
 			
-			//������
+			//오른쪽
 			for(int i = hole.idx + 1; i < maxX; i++) {
 				Line line = horizontal.get(i);
 				height = Integer.min(height, line.depth);

@@ -8,7 +8,7 @@ class Node {
 	private final int alphaSize = 26;
 	private char alpha;
 	private Node[] child;
-	private Map<Integer, Integer> frequencyMap; //<���ڿ� ����, �󵵼�>
+	private Map<Integer, Integer> frequencyMap;
 	private int depth;
 	
 	public Node(char alpha) {

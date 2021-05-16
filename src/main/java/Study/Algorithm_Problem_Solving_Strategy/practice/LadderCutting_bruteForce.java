@@ -25,10 +25,10 @@ public class LadderCutting_bruteForce {
 		output.close();
 	}
 	
-	public static int bruteForce(int[] h) { //������ ���̸� ���� �迭 h[]�� �־��� �� �簢���� �ִ� �ʺ� ��ȯ
+	public static int bruteForce(int[] h) {
 		int ret = 0;
 		int N = h.length;
-		for(int left=0; left<N; left++) { //������ ��� left,right ������ ��ȸ�Ѵ�.
+		for(int left=0; left<N; left++) {
 			int minHeight = h[left];
 			for(int right=left; right<N; right++) {
 				minHeight = Integer.min(minHeight, h[right]);

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-	static long[] d; //D[i] = ũ�������� ��ư�� �� i�� ������ ȭ�鿡 ��µ� A������ �ִ밪
+	static long[] d; //D[i] = 크리보드의 버튼을 총 i번 눌러서 화면에 출력된 A개수의 최대값
 	static int N;
 	
 	public static void main(String[] args)  {

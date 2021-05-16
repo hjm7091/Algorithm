@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
 
 	static int N, K;
-	static int[] words; //words[i] = i��° �ܾ ���Ե� ���ĺ��� ��Ʈ����ũ
+	static int[] words; //words[i] = i번째 단어에 포함된 알파벳의 비트마스크
 	
 	public static void main(String[] args) {
 		init();
@@ -47,10 +47,10 @@ public class Main {
 		return false;
 	}
 	
-	private static int count(int mask) { //mask : ��� ���ĺ��� ��Ʈ����ũ ��
+	private static int count(int mask) { //mask : 배운 알파벳의 비트마스크 값
 		int cnt = 0;
 		for(int word : words) {
-			if((word & ((1 << 26) - 1 - mask)) == 0) { //(1 << 26) - 1 - mask : mask�� ����
+			if((word & ((1 << 26) - 1 - mask)) == 0) { //(1 << 26) - 1 - mask : mask값 반전
 				cnt++;
 			}
 		}

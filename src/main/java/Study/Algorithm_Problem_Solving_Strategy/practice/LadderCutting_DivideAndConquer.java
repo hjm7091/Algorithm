@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 
 public class LadderCutting_DivideAndConquer {
 
-	static int[] h; //�� ������ ���̸� �����ϴ� �迭
+	static int[] h;
 	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
@@ -27,15 +27,15 @@ public class LadderCutting_DivideAndConquer {
 		output.close();
 	}
 	
-	public static int solve(int left, int right) { //h[left...right]�������� ã�Ƴ� �� �ִ� ���� ū �簢���� ���� ��ȯ
-		if(left==right) //���� ���:���ڰ� �ϳ��ۿ� ���� ���
+	public static int solve(int left, int right) {
+		if(left==right)
 			return h[left];
-		int mid = (left+right)/2; //[left,mid],[mid+1,right]�� �� �������� ������ ����
-		int ret = Integer.max(solve(left,mid), solve(mid+1,right)); //������ ������ ��������
+		int mid = (left+right)/2;
+		int ret = Integer.max(solve(left,mid), solve(mid+1,right));
 		int lo = mid, hi = mid+1;
 		int height = Integer.min(h[lo], h[hi]); 
-		ret = Integer.max(ret, 2*height); //[mid,mid+1]�� �����ϴ� �ʺ� 2�� �簢���� ���
-		while(left < lo || hi < right) { //�� �κп� ��� ��ġ�� �簢�� �� ���� ū ���� ã�´�, �׻� ���̰� �� ���� ������ Ȯ��
+		ret = Integer.max(ret, 2*height);
+		while(left < lo || hi < right) {
 			if(left < lo && (hi == right || h[lo-1] > h[hi+1])) {
 				--lo;
 				height = Integer.min(height, h[lo]);
@@ -44,7 +44,7 @@ public class LadderCutting_DivideAndConquer {
 				++hi;
 				height = Integer.min(height, h[hi]);
 			}
-			ret = Integer.max(ret, height*(hi-lo+1)); //Ȯ���� �� �簢���� ����
+			ret = Integer.max(ret, height*(hi-lo+1));
 		}
 		return ret;
 	}

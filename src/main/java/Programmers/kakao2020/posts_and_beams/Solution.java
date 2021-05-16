@@ -45,7 +45,7 @@ class Struct implements Comparable<Struct> {
 
 public class Solution {
 
-	final int POST = 0, BEAM = 1; //POST:���, BEAM:��
+	final int POST = 0, BEAM = 1; //POST:기둥, BEAM:보
 	final int PUT = 1, REMOVE = 0; 
 	Set<Struct> structs = new TreeSet<>();
 	
@@ -78,19 +78,19 @@ public class Solution {
 	private boolean check() {
 		for(Struct struct : structs) {
 			if(struct.kind == POST) {
-				Struct upPost = new Struct(struct.x, struct.y-1, POST); //���� ��� ������ ���
-				Struct leftBeam = new Struct(struct.x-1, struct.y, BEAM); //���� ��� ������ ��
-				Struct rightBeam = new Struct(struct.x, struct.y, BEAM); //���� ��� �������� ��
+				Struct upPost = new Struct(struct.x, struct.y-1, POST); //현재 기둥 위쪽의 기둥
+				Struct leftBeam = new Struct(struct.x-1, struct.y, BEAM); //현재 기둥 왼쪽의 보
+				Struct rightBeam = new Struct(struct.x, struct.y, BEAM); //현재 기둥 오른쪽의 보
 				if(struct.y == 0 || structs.contains(upPost) || structs.contains(leftBeam) || structs.contains(rightBeam))
 					continue;
 				else
 					return false;
 			}
 			else if(struct.kind == BEAM) {
-				Struct leftPost = new Struct(struct.x, struct.y-1, POST); //���� �� ������ ���
-				Struct rightPost = new Struct(struct.x+1, struct.y-1, POST); //���� �� �������� ���
-				Struct leftBeam = new Struct(struct.x-1, struct.y, BEAM); //���� �� ������ ��
-				Struct rightBeam = new Struct(struct.x+1, struct.y, BEAM); //���� �� �������� ��
+				Struct leftPost = new Struct(struct.x, struct.y-1, POST); //현재 보 왼쪽의 기둥
+				Struct rightPost = new Struct(struct.x+1, struct.y-1, POST); //현재 보 오른쪽의 기둥
+				Struct leftBeam = new Struct(struct.x-1, struct.y, BEAM); //현재 보 왼쪽의 보
+				Struct rightBeam = new Struct(struct.x+1, struct.y, BEAM); //현재 보 오른쪽의 보
 				if(structs.contains(leftPost) || structs.contains(rightPost) || (structs.contains(leftBeam) && structs.contains(rightBeam)))
 					continue;
 				else

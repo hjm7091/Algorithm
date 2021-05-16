@@ -59,13 +59,13 @@ public class Main {
 				if(a[i-1] < a[i]) {
 					
 					for(int j = 1; j <= l; j++) {
-						if(i-j < 0) // ���θ� ���ٰ� ������ ����� ���
+						if(i-j < 0) // 경사로를 놓다가 범위를 벗어나는 경우
 							return false;
 						
-						if(a[i-1] != a[i-j]) // ���� ������ ĭ�� ���̰� ��� ���� �ʰų�, L���� ���ӵ��� ���� ���
+						if(a[i-1] != a[i-j]) // 낮은 지점의 칸의 높이가 모두 같지 않거나, L개가 연속되지 않은 경우
 							return false;
 						
-						if(check[i-j]) // ���θ� ���� ���� �� ���θ� ���� ���
+						if(check[i-j]) // 경사로를 놓은 곳에 또 경사로를 놓는 경우
 							return false;
 						
 						check[i-j] = true;
@@ -74,13 +74,13 @@ public class Main {
 				} else {
 					
 					for(int j = 0; j < l; j++) {
-						if(i+j >= N) // ���θ� ���ٰ� ������ ����� ���
+						if(i+j >= N) // 경사로를 놓다가 범위를 벗어나는 경우
 							return false;
 						
-						if(a[i] != a[i+j]) // ���� ������ ĭ�� ���̰� ��� ���� �ʰų�, L���� ���ӵ��� ���� ���
+						if(a[i] != a[i+j]) // 낮은 지점의 칸의 높이가 모두 같지 않거나, L개가 연속되지 않은 경우
 							return false;
 						
-						if(check[i+j]) // ���θ� ���� ���� �� ���θ� ���� ���
+						if(check[i+j]) // 경사로를 놓은 곳에 또 경사로를 놓는 경우
 							return false;
 						
 						check[i+j] = true;

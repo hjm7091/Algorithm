@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 class Point {
 	int x, y;
-	int path; //0�̸� ���۱� ���� ����, 1�̸� ���۱� ���� ����
-	int state; //���� ��ġ�� ����
+	int path; //0이면 오작교 쓴적 없음, 1이면 오작교 쓴적 있음
+	int state; //현재 위치의 상태
 	public Point(int x, int y, int path, int state) {
 		this.x = x;
 		this.y = y;
@@ -25,7 +25,7 @@ public class Main {
 
 	static int N, M;
 	static int[][] land;
-	static int[][][] move; //move[x][y][0] : ���۱��� �Ⱦ��� ���� ��, move[x][y][1] : ���۱��� ���� ���� ��
+	static int[][][] move; //move[x][y][0] : 오작교를 안쓰고 가는 길, move[x][y][1] : 오작교를 쓰고 가는 길
 	static int[] dx = {-1,0,1,0};
 	static int[] dy = {0,1,0,-1};
 	static final int CLIFF = 0;
@@ -83,13 +83,13 @@ public class Main {
 		if(checkRangeOver(nx, ny))
 			return;
 		int next = land[nx][ny];
-		if(now.state == NORMAL && next == NORMAL) { //���� : �Ϲ� ��, ���� : �Ϲ� ��
+		if(now.state == NORMAL && next == NORMAL) { //현재 : 일반 땅, 다음 : 일반 땅
 			if(move[x][y][path] + 1 < move[nx][ny][path]) {
 				move[nx][ny][path] = move[x][y][path] + 1;
 				q.add(new Point(nx, ny, path, NORMAL));
 			}
 		}
-		else if(now.state == NORMAL && next == CLIFF) { //���� : �Ϲ� ��, ���� : ����
+		else if(now.state == NORMAL && next == CLIFF) { //현재 : 일반 땅, 다음 : 절벽
 			if(path == 1 || isCrossed(nx, ny))
 				return;
 			if(move[x][y][path] < M) {
@@ -106,7 +106,7 @@ public class Main {
 				}
 			}
 		}
-		else if(now.state == NORMAL && (next != NORMAL && next != CLIFF)) { //���� : �Ϲ� ��, ���� : ���۱�
+		else if(now.state == NORMAL && (next != NORMAL && next != CLIFF)) { //현재 : 일반 땅, 다음 : 오작교
 			int bridgeValue = land[nx][ny];
 			if(move[x][y][path] < bridgeValue) {
 				if(bridgeValue < move[nx][ny][path]) {
@@ -122,28 +122,28 @@ public class Main {
 				}
 			}
 		}
-		else if(now.state == CLIFF && next == NORMAL) { //���� : ����, ���� : �Ϲ� ��
+		else if(now.state == CLIFF && next == NORMAL) { //현재 : 절벽, 다음 : 일반 땅
 			if(move[x][y][path] + 1 < move[nx][ny][path]) {
 				move[nx][ny][path] = move[x][y][path] + 1;
 				q.add(new Point(nx, ny, path, NORMAL));
 			}
 		}
-		else if(now.state == CLIFF && next == CLIFF) { //���� : ����, ���� : ����
+		else if(now.state == CLIFF && next == CLIFF) { //현재 : 절벽, 다음 : 절벽
 			return;
 		}
-		else if(now.state == CLIFF && (next != NORMAL && next != CLIFF)) { //���� : ����, ���� : ���۱�
+		else if(now.state == CLIFF && (next != NORMAL && next != CLIFF)) { //현재 : 절벽, 다음 : 오작교
 			return;
 		}
-		else if(now.state == BRIDGE && next == NORMAL) { //���� : ���۱�, ���� : �Ϲ� ��
+		else if(now.state == BRIDGE && next == NORMAL) { //현재 : 오작교, 다음 : 일반 땅
 			if(move[x][y][path] + 1 < move[nx][ny][path]) {
 				move[nx][ny][path] = move[x][y][path] + 1;
 				q.add(new Point(nx, ny, path, NORMAL));
 			}
 		}
-		else if(now.state == BRIDGE && next == CLIFF) { //���� : ���۱�, ���� : ����
+		else if(now.state == BRIDGE && next == CLIFF) { //현재 : 오작교, 다음 : 절벽
 			return;
 		}
-		else if(now.state == BRIDGE && (next != NORMAL && next != CLIFF)) { //���� : ���۱�, ���� : ���۱�
+		else if(now.state == BRIDGE && (next != NORMAL && next != CLIFF)) { //현재 : 오작교, 다음 : 오작교
 			return;
 		}
 	}

@@ -110,7 +110,7 @@ public class Solution {
 		List<Robot> next = new ArrayList<>();
 		String pos = compare(pivot, comp);
 		if(pos.equals("up") || pos.equals("down")) {
-			//�Ǻ��� �������� �������� ȸ�� 
+			//피봇을 기준으로 왼쪽으로 회전
 			Location left_from_comp = new Location(comp.x, comp.y-1);
 			Location left_from_pivot = new Location(pivot.x, pivot.y-1);
 			if(canRotate(left_from_comp, left_from_pivot)) {
@@ -121,7 +121,7 @@ public class Solution {
 				}
 			}
 			
-			//�Ǻ��� �������� ���������� ȸ��
+			//피봇을 기준으로 오른쪽으로 회전
 			Location right_from_comp = new Location(comp.x, comp.y+1);
 			Location right_from_pivot = new Location(pivot.x, pivot.y+1);
 			if(canRotate(right_from_comp, right_from_pivot)) {
@@ -133,7 +133,7 @@ public class Solution {
 			}
 		}
 		else if(pos.equals("left") || pos.equals("right")) {
-			//�Ǻ��� �������� �������� ȸ��
+			//피봇을 기준으로 위쪽으로 회전
 			Location up_from_comp = new Location(comp.x-1, comp.y);
 			Location up_from_pivot = new Location(pivot.x-1, pivot.y);
 			if(canRotate(up_from_comp, up_from_pivot)) {
@@ -144,7 +144,7 @@ public class Solution {
 				}
 			}
 			
-			//�Ǻ��� �������� �Ʒ������� ȸ��
+			//피봇을 기준으로 아래쪽으로 회전
 			Location down_from_comp = new Location(comp.x+1, comp.y);
 			Location down_from_pivot = new Location(pivot.x+1, pivot.y);
 			if(canRotate(down_from_comp, down_from_pivot)) {

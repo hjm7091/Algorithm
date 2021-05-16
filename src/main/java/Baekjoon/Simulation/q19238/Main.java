@@ -119,10 +119,10 @@ public class Main {
         boolean flag = false;
 
         for (int i = 1; i <= M; i++) {
-            if (arrived[i]) //�̹� �Ϸ��� �°��� ���
+            if (arrived[i]) //이미 완료한 승객인 경우
                 continue;
 
-            if (tmpMap[sources[i].x][sources[i].y] == -1) //���� �Ұ����� �°��� ���
+            if (tmpMap[sources[i].x][sources[i].y] == -1) //도달 불가능한 승객인 경우
                 continue;
 
             if (!flag) {

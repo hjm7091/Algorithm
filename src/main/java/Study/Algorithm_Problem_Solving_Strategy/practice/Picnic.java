@@ -9,11 +9,11 @@ import java.util.StringTokenizer;
 
 public class Picnic {
 	
-	static int n; //�л� ��
-	static int m; //ģ�� ���� ��
-	static boolean[][] areFriends = new boolean[10][10]; //ģ���� �� �л��� ��ȣ�� ���� true�� false�� ������
-	static boolean[] taken = new boolean[10]; //i��° �л��� ¦�� �̹� ã������ true, �ƴϸ� false
-	static int C; //�׽�Ʈ ���̽� ��
+	static int n;
+	static int m;
+	static boolean[][] areFriends = new boolean[10][10];
+	static boolean[] taken = new boolean[10];
+	static int C;
 	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
@@ -23,15 +23,15 @@ public class Picnic {
 			StringTokenizer st = new StringTokenizer(input.readLine());
 			n = Integer.parseInt(st.nextToken());
 			m = Integer.parseInt(st.nextToken());
-			Arrays.fill(taken, false); //�ѹ��� �ʱ�ȭ
-			for(int i=0; i<10; i++) //�ѹ��� �ʱ�ȭ
+			Arrays.fill(taken, false);
+			for(int i=0; i<10; i++)
 				Arrays.fill(areFriends[i], false);
 			String str = input.readLine();
 			String array[] = str.split(" ");
 			for(int i=0; i<array.length; i+=2) {
 				int x = Integer.parseInt(array[i]);
 				int y = Integer.parseInt(array[i+1]);
-				areFriends[x][y]=true;  //0�� 1, 1�� 0�� ���� ����̹Ƿ� �Ѵ� true�� �ٲ���Ѵ�.
+				areFriends[x][y]=true;
 				areFriends[y][x]=true;
 			}
 			int result = countPairings(taken);
