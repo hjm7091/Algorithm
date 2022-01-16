@@ -1,11 +1,12 @@
 package Study.Cracking_The_Coding_Interview_6E.Array_String.problem1_1;
 
-public class SolutionUsingArray {
+public class BookSolution1 {
 
     public static void main(String[] args) {
-        SolutionUsingArray solutionUsingArray = new SolutionUsingArray();
-        System.out.println(solutionUsingArray.isUniqueChars("abcdefg"));
-        System.out.println(solutionUsingArray.isUniqueChars("abcdeda"));
+        BookSolution1 bookSolution = new BookSolution1();
+        System.out.println(bookSolution.isUniqueChars("abcdefg"));
+        System.out.println(bookSolution.isUniqueChars("abcdeda"));
+        System.out.println(bookSolution.isUniqueChars("!)_"));
     }
 
     public boolean isUniqueChars(String str) {
