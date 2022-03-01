@@ -1,9 +1,6 @@
 package Study.Cracking_The_Coding_Interview_6E.LinkedList;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 public class Node<T> {
     private final T data;
@@ -26,6 +23,16 @@ public class Node<T> {
         }
 
         return head;
+    }
+
+    public int size() {
+        int size = 0;
+        Node<T> p = this;
+        while (p != null) {
+            size++;
+            p = p.next;
+        }
+        return size;
     }
 
     public boolean hasDuplicatedData() {
@@ -74,5 +81,18 @@ public class Node<T> {
         }
 
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Node<?> node = (Node<?>) o;
+        return data.equals(node.data);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(data);
     }
 }
