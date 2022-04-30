@@ -35,6 +35,40 @@ public class Node<T> {
         return size;
     }
 
+    public Node<T> reverse() {
+        List<Node<T>> nodes = getNodeList();
+        Collections.reverse(nodes);
+
+        for (int i = 0; i < nodes.size(); i++) {
+            Node<T> next = i == nodes.size() - 1 ? null : nodes.get(i + 1);
+            nodes.get(i).setNext(next);
+        }
+
+        return nodes.get(0);
+    }
+
+    public List<T> getDataList() {
+        List<T> data = new ArrayList<>();
+        data.add(this.data);
+        Node<T> curr = this.next;
+        while (curr != null) {
+            data.add(curr.getData());
+            curr = curr.next;
+        }
+        return data;
+    }
+
+    public List<Node<T>> getNodeList() {
+        List<Node<T>> nodes = new ArrayList<>();
+        nodes.add(this);
+        Node<T> curr = this.next;
+        while (curr != null) {
+            nodes.add(curr);
+            curr = curr.next;
+        }
+        return nodes;
+    }
+
     public boolean hasDuplicatedData() {
         int size = 0;
         Set<T> hashSet = new HashSet<>();
@@ -88,11 +122,23 @@ public class Node<T> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Node<?> node = (Node<?>) o;
-        return data.equals(node.data);
+
+        List<T> these = getDataList();
+        List<?> those = node.getDataList();
+
+        if (these.size() != those.size()) return false;
+
+        boolean same = true;
+        for (int i = 0; i < those.size(); i++) {
+            T currThis = these.get(i);
+            Object currThose = those.get(i);
+            same &= currThis.equals(currThose);
+        }
+        return same;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(data);
+        return Objects.hash(getDataList());
     }
 }
