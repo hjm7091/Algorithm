@@ -25,6 +25,20 @@ public class Node<T> {
         return head;
     }
 
+    public Node<T> copy() {
+        Node<T> curr = null, head = null;
+        for (T data : getDataList()) {
+            if (curr == null) {
+                curr = new Node<>(data);
+                head = curr;
+            } else {
+                curr.setNext(new Node<>(data));
+                curr = curr.getNext();
+            }
+        }
+        return head;
+    }
+
     public int size() {
         int size = 0;
         Node<T> p = this;

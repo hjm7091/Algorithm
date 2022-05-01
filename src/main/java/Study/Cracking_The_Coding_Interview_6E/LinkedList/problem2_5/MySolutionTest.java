@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SolutionTest {
+public class MySolutionTest {
 
     @Test
     @DisplayName("예제 테스트(예제 입출력)")
