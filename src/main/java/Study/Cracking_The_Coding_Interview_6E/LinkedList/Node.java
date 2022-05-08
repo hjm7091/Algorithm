@@ -1,5 +1,6 @@
 package Study.Cracking_The_Coding_Interview_6E.LinkedList;
 
+import java.security.InvalidParameterException;
 import java.util.*;
 
 public class Node<T> {
@@ -95,6 +96,25 @@ public class Node<T> {
         }
 
         return hashSet.size() != size;
+    }
+
+    public Node<T> getTail() {
+        Node<T> curr = this;
+        while (true) {
+            if (curr.next == null) return curr;
+            curr = curr.next;
+        }
+    }
+
+    public Node<T> getNthNode(int n) {
+        if (n < 0) throw new InvalidParameterException("Method parameter 'n' must not be negative.");
+        if (n >= this.size()) throw new InvalidParameterException("Method parameter 'n' must be smaller than node's size.");
+        Node<T> curr = this;
+        while (n > 0 && curr != null) {
+            curr = curr.next;
+            n--;
+        }
+        return curr;
     }
 
     public T getData() {
