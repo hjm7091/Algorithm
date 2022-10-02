@@ -1,7 +1,7 @@
 package Study.Cracking_The_Coding_Interview_6E.Tree_Graph.problem4_1;
 
 import Study.Cracking_The_Coding_Interview_6E.Tree_Graph.Graph;
-import Study.Cracking_The_Coding_Interview_6E.Tree_Graph.Node;
+import Study.Cracking_The_Coding_Interview_6E.Tree_Graph.MultiNode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,12 +23,12 @@ public class PathExistenceCheckerTest {
         });
 
         //when & then
-        List<Node> nodes = graph.getNodes();
-        assertThat(PathExistenceChecker.check(graph, nodes.get(0), nodes.get(4))).isTrue();
-        assertThat(PathExistenceChecker.check(graph, nodes.get(0), nodes.get(2))).isTrue();
-        assertThat(PathExistenceChecker.check(graph, nodes.get(0), nodes.get(3))).isFalse();
-        assertThat(PathExistenceChecker.check(graph, nodes.get(3), nodes.get(4))).isTrue();
-        assertThat(PathExistenceChecker.check(graph, nodes.get(4), nodes.get(3))).isFalse();
+        List<MultiNode> multiNodes = graph.getNodes();
+        assertThat(PathExistenceChecker.check(graph, multiNodes.get(0), multiNodes.get(4))).isTrue();
+        assertThat(PathExistenceChecker.check(graph, multiNodes.get(0), multiNodes.get(2))).isTrue();
+        assertThat(PathExistenceChecker.check(graph, multiNodes.get(0), multiNodes.get(3))).isFalse();
+        assertThat(PathExistenceChecker.check(graph, multiNodes.get(3), multiNodes.get(4))).isTrue();
+        assertThat(PathExistenceChecker.check(graph, multiNodes.get(4), multiNodes.get(3))).isFalse();
     }
 
 }

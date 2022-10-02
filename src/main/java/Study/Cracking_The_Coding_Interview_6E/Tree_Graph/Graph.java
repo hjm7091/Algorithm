@@ -1,6 +1,6 @@
 package Study.Cracking_The_Coding_Interview_6E.Tree_Graph;
 
-import Study.Cracking_The_Coding_Interview_6E.Tree_Graph.Node.State;
+import Study.Cracking_The_Coding_Interview_6E.Tree_Graph.MultiNode.State;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,22 +8,22 @@ import java.util.function.Consumer;
 
 public class Graph {
 
-    private final List<Node> nodes = new ArrayList<>();
+    private final List<MultiNode> multiNodes = new ArrayList<>();
 
-    public Graph(int size, Consumer<List<Node>> association) {
+    public Graph(int size, Consumer<List<MultiNode>> association) {
         for (int i = 0; i < size; i++) {
-            nodes.add(new Node(String.valueOf(i)));
+            multiNodes.add(new MultiNode(String.valueOf(i)));
         }
-        association.accept(this.nodes);
+        association.accept(this.multiNodes);
     }
 
     public void undoVisitHistory() {
-        for (Node node : this.nodes) {
-            node.setState(State.Unvisited);
+        for (MultiNode multiNode : this.multiNodes) {
+            multiNode.setState(State.Unvisited);
         }
     }
 
-    public List<Node> getNodes() {
-        return nodes;
+    public List<MultiNode> getNodes() {
+        return multiNodes;
     }
 }

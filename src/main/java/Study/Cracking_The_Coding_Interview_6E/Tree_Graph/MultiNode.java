@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Node {
+public class MultiNode {
 
     private final String name;
 
-    private final List<Node> children = new ArrayList<>();
+    private final List<MultiNode> children = new ArrayList<>();
 
     private State state = State.Unvisited;
 
-    public Node(String name) {
+    public MultiNode(String name) {
         this.name = name;
     }
 
@@ -28,17 +28,17 @@ public class Node {
         this.state = state;
     }
 
-    public List<Node> getChildren() {
+    public List<MultiNode> getChildren() {
         return children;
     }
 
-    public void setChildren(Node... children) {
+    public void setChildren(MultiNode... children) {
         this.children.addAll(Arrays.asList(children));
     }
 
     @Override
     public String toString() {
-        return String.format("Node(%s)", this.name);
+        return String.format("MultiNode(%s)", this.name);
     }
 
     public enum State {
