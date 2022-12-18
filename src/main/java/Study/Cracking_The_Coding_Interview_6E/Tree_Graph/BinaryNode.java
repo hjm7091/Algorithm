@@ -10,6 +10,10 @@ public class BinaryNode {
         this.value = value;
     }
 
+    public static BinaryNode of(int value) {
+        return new BinaryNode(value);
+    }
+
     public int getValue() {
         return value;
     }
@@ -18,21 +22,23 @@ public class BinaryNode {
         return leftChild;
     }
 
-    public void setLeftChild(BinaryNode leftChild) {
+    public BinaryNode setLeftChild(BinaryNode leftChild) {
         this.leftChild = leftChild;
+        return this;
     }
 
     public BinaryNode getRightChild() {
         return rightChild;
     }
 
-    public void setRightChild(BinaryNode rightChild) {
+    public BinaryNode setRightChild(BinaryNode rightChild) {
         this.rightChild = rightChild;
+        return this;
     }
 
     public static void traversal(BinaryNode root) {
         if (root == null) return;
-        System.out.println(root.toString());
+        System.out.println(root);
         traversal(root.leftChild);
         traversal(root.rightChild);
     }
