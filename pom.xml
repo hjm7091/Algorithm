@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>jin</groupId>
-    <artifactId>Java_Algorithm</artifactId>
+    <artifactId>Algorithm</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>Java_Algorithm</name>
+    <name>Algorithm</name>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
